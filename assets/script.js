@@ -17,6 +17,8 @@ const slides = [
 	}
 ]
 
+// console.log(slides.length)
+
 let leftArrow = document.querySelector("#banner .arrow_left");
 let rightArrow = document.querySelector("#banner .arrow_right");
 
