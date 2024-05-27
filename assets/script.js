@@ -16,30 +16,48 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
-
-// console.log(slides.length)
-
+let bannerText = document.getElementById("banner-text")
 let bannerImg = document.querySelector(".banner-img");
 let leftArrow = document.querySelector("#banner .arrow_left");
 let rightArrow = document.querySelector("#banner .arrow_right");
-
-
 let dots = document.querySelectorAll(".dot")
-console.log(dots)
+
+let i = 0
+
 dots[0].classList.add("dot_selected")
 
-let i = 0;
+leftArrow.addEventListener("click", () => {
+	i -= 1
 
-rightArrow.addEventListener("click", () => {
-	dots[i].classList.remove("dot_selected")
-	i = (i+1)
-	bannerImg.src = `./assets/images/slideshow/${slides[i].image}`
-	dots[i].classList.add("dot_selected")
+	if (i === -1) {
+		dots[i+1].classList.remove("dot_selected")
+		i = 3
+		bannerImg.src = `./assets/images/slideshow/${slides[i].image}`
+		dots[i].classList.add("dot_selected")
+		bannerText.innerHTML = `<p>${slides[i].tagLine}</p>`
+	}
+	else {
+		dots[i+1].classList.remove("dot_selected")
+		bannerImg.src = `./assets/images/slideshow/${slides[i].image}`
+		dots[i].classList.add("dot_selected")
+		bannerText.innerHTML = `<p>${slides[i].tagLine}</p>`
+	}
 })
 
-leftArrow.addEventListener("click", () => {
-	dots[i].classList.remove("dot_selected")
-	i = (i-1)
-	bannerImg.src = `./assets/images/slideshow/${slides[i].image}`
-	dots[i].classList.add("dot_selected")
+rightArrow.addEventListener("click", () => {
+	i += 1
+
+	if (i === 4) {
+		dots[i-1].classList.remove("dot_selected")
+		i = 0
+		bannerImg.src = `./assets/images/slideshow/${slides[i].image}`
+		dots[i].classList.add("dot_selected")
+		bannerText.innerHTML = `<p>${slides[i].tagLine}</p>`
+	}
+	else {
+		dots[i-1].classList.remove("dot_selected")
+		bannerImg.src = `./assets/images/slideshow/${slides[i].image}`
+		dots[i].classList.add("dot_selected")
+		bannerText.innerHTML = `<p>${slides[i].tagLine}</p>`
+	}
 })
